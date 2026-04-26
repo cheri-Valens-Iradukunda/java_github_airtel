@@ -31,7 +31,7 @@ public class Cont_employees {
 	    }
 		model.addAttribute("employees", repo_employees.findAll());
 		
-		return "Employees/list";
+		return "employees/list";
 	}
 	
 	@GetMapping("/add")
@@ -42,7 +42,7 @@ public class Cont_employees {
 		model.addAttribute("obj", new Mdl_employees());
 		model.addAttribute("departments", repo_department.findAll());
 		
-		return "/Employees/addNew";
+		return "/employees/addNew";
 	}
 	
 	@PostMapping
@@ -68,7 +68,7 @@ public class Cont_employees {
 
 		model.addAttribute("departments", repo_department.findAll());
 		
-		return "Employees/addNew";
+		return "employees/addNew";
 	}
 	
 }
