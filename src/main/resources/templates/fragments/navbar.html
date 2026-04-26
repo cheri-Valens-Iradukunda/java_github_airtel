@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="fullNav">
+		<div class="header">
+		    Airtel Inventory
+		</div>
+		<div th:fragment="navbar">
+			
+		    <div class="navbar">
+				<div class="dropdown">
+		            <a href="/">Dashboard</a>
+		        </div>
+		        <div class="dropdown">
+		            <a href="#">Employees</a>
+		            <div class="dropdown-content">
+		                <a th:href="@{/employees/add}">Add</a>
+		                <a th:href="@{/employees/}">All</a>
+		            </div>
+		        </div>
+		
+		        <div class="dropdown">
+		            <a href="#">Devices</a>
+		            <div class="dropdown-content">
+		                <a th:href="@{/devices/add}">Add</a>
+		                <a th:href="@{/devices/}">View</a>
+		            </div>
+		        </div>
+		
+		        <div class="dropdown">
+		            <a href="#">Department</a>
+		            <div class="dropdown-content">
+		                <a th:href="@{/department/add}">Add</a>
+		                <a th:href="@{/department/}">View</a>
+		            </div>
+		        </div>
+		
+		        <div class="dropdown">
+		            <a href="#">Assign</a>
+		            <div class="dropdown-content">
+		                <a th:href="@{/assign/add}">Add</a>
+		                <a th:href="@{/assign/}">View</a>
+		            </div>
+		        </div>
+		    	<div class="dropdown">
+		            <a href="/users/logout">Logout</a>
+		        </div>    
+			
+		    </div>
+		
+		</div>
+	</div>
+</body>
+</html>

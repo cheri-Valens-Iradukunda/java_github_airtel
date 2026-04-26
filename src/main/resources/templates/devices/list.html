@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Devices List</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+        .header {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 22px;
+    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #333;
+            color: white;
+        }
+
+        td a,.add-btn {
+            padding: 5px 10px;
+            color: white;
+            background: blue;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .delete { background: red; }
+        .add-btn { background: green; margin-bottom: 10px; display: inline-block; }
+        
+        .navbar {
+    background-color: #2c3e50;
+    display: flex;
+    padding: 0 20px;
+}
+
+.navbar .dropdown {
+    position: relative;
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 18px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: #34495e;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #eee;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+    </style>
+</head>
+<body>
+	<div th:replace="fragments/navbar :: navbar"></div>
+
+<h2>Devices List</h2>
+
+<a th:href="@{/devices/new}" class="add-btn">Add New Device</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Serial</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="dev : ${devices}">
+            <td th:text="${dev.id}"></td>
+            <td th:text="${dev.serialNumber}"></td>
+            <td th:text="${dev.type}"></td>
+            <td th:text="${dev.brand}"></td>
+            <td th:text="${dev.model}"></td>
+            <td th:text="${dev.status}"></td>
+
+            <td class="action_links">
+                <a th:href="@{/devices/edit/{id}(id=${dev.id})}">Edit</a>
+                <a th:href="@{/devices/delete/{id}(id=${dev.id})}"
+                   class="delete"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

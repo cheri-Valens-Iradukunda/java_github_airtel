@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employees List</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .header {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 22px;
+    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        .table-td a {
+            padding: 5px 10px;
+            text-decoration: none;
+            color: white;
+            background: blue;
+            border-radius: 4px;
+        }
+        .delete {
+            background: red;
+        }
+        .add-btn {
+            display: inline-block;
+            margin-bottom: 10px;
+            background: green;
+        }.fullNav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            padding: 0 20px;
+        }
+
+        /* LEFT TITLE */
+        .header {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* NAV CONTAINER RIGHT SIDE */
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: black;
+        }
+
+        /* MENU ITEMS */
+        .dropdown {
+            position: relative;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 18px;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #34495e;
+            border-radius: 4px;
+        }
+
+        /* DROPDOWN MENU */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 14px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #eee;
+        }
+
+        /* SHOW DROPDOWN ON HOVER */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+	<div th:replace="fragments/navbar :: navbar"></div>
+
+<h2>Employees List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="emp : ${employees}">
+            <td th:text="${emp.id}"></td>
+            <td th:text="${emp.name}"></td>
+            <td th:text="${emp.email}"></td>
+            <td th:text="${emp.phone}"></td>
+
+            <!-- Handle possible null department -->
+            <td th:text="${emp.department != null ? emp.department.name : 'No Department'}"></td>
+
+            <td class="table-td">
+                <a th:href="@{/employees/edit/{id}(id=${emp.id})}">Edit</a>
+                <a th:href="@{/employees/delete/{id}(id=${emp.id})}" class="delete"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
