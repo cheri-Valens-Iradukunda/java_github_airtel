@@ -50,7 +50,7 @@ public class Cont_users {
 	public String saveUser(Mdl_users user) {
 		repo_users.save(user);
 		System.out.println("saved");
-		return "redirect:/users/";
+		return "redirect:/users/auth";
 	}
 	
 	@GetMapping("/all")
