@@ -39,10 +39,10 @@ public class Cont_department {
         return "department/addNew"; // Thymeleaf template
     }
     
-    @PostMapping
+    @PostMapping("/")
     public String saveDepartment(@ModelAttribute Mdl_department department) {
         repo_department.save(department);
-        return "redirect:/department";
+        return "redirect:/department/";
     }
     @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable Long id, Model model,HttpSession session) {

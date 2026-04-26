@@ -62,7 +62,7 @@
     <div th:replace="fragments/navbar :: navbar"></div>
     <div class="form-container">
         <h2>Add Department</h2>
-        <form th:action="@{/department}" method="post" th:object="${department}">
+        <form th:action="@{/department/}" method="post" th:object="${department}">
             <input type="hidden" th:field="*{id}" />
             
             <label for="name">Department Name</label>
